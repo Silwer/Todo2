@@ -1,0 +1,50 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Awesome Todos!";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+<div id="PageWrapper">
+    <div id="TodoWrapper" ng-controller="TodoController" ng-init="init()">
+        <div class="text-center">
+            <h2>Awesome todos!</h2>
+            <form role="form" class="form-inline">
+                <input type="text" class="form-control" id="Todo" placeholder="Enter new todo name" ng-model="newTodoName" ng-keyup="inputUpdate($event)">
+                <button class="btn btn-success" ng-click="addTodo()"><i class="icon icon-plus"></i></button>
+            </form>
+        </div>
+        <div id="ShowTodos" ng-cloak>
+            <table class="table table-condensed table-striped">
+                <tr ng-repeat="todo1 in todos2" ng-show="$index < 10">
+                    <td class="todo">
+                        <label for="Completed-{{todo1.Id}}" class="name checkbox" ng-class="{completed: todo1.Completed}">{{todo1.Name}}
+                            <input type="checkbox" id="Completed-{{todo1.Id}}" ng-model="todo1.Completed" ng-click="completeTodo(todo1)"/>
+                        </label>
+                    </td>
+                    <td>
+                        <a ng-click="removeTodo(todo1.Id, 'paginator', todo1.Name)" class="btn btn-danger pull-right"><i class="icon-remove"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="ShowPaginator" ng-repeat="count in pagecounter">
+            <a ng-click="paginator(count)" ng-model="newTodoName"><i class=""></i>{{count}}</a>
+        </div>
+        <div id="Todos" ng-show="hasAnyTodos()" ng-cloak>
+            <header>Things I need to get done:</header>
+            <table class="table table-condensed table-striped">
+                <tr ng-repeat="todo in todos | orderBy:'Name'">
+                    <td class="todo">
+                        <label for="Completed-{{todo.Id}}" class="name checkbox" ng-class="{completed: todo.Completed}">{{todo.Name}}
+                            <input type="checkbox" id="Completed-{{todo.Id}}" ng-model="todo.Completed" ng-click="completeTodo(todo)"/>
+                        </label>
+                    </td>
+                    <td>
+                        <a ng-click="removeTodo(todo.Id)" class="btn btn-danger pull-right"><i class="icon-remove"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

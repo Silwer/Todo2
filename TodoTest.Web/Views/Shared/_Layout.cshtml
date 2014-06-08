@@ -1,0 +1,37 @@
+﻿@using SquishIt.Framework
+@using SquishIt.Framework.Minifiers.JavaScript
+<!DOCTYPE html>
+
+<html ng-app="Todo">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Html.Raw(
+        @Bundle.Css()
+        .Add("~/Content/bootstrap.css")
+        .Add("~/Content/bootstrap-responsive.css")
+        .Add("~/Content/font-awesome.css")
+        .Add("~/Content/app/todo.less")
+        .Render("~/Content/todo_#.css")
+    )
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+    @Html.Raw(Bundle.JavaScript()
+        .Add("~/Scripts/angular.js")
+        .Add("~/Scripts/ui-bootstrap-tpls-0.10.0.js")
+        .Add("~/Scripts/underscore.js")
+        .Add("~/Scripts/jquery-1.9.1.js")
+        .Add("~/Scripts/app/app.js")
+        .Add("~/Scripts/app/controllers/TodoController.js")
+        .Add("~/Scripts/app/services/TodoService.js")
+        .Add("~/Scripts/app/helpers/HttpRequestUrlHelper.js")
+        .WithMinifier<JsMinMinifier>()
+        .Render("~/Scripts/todo_#.js")
+        
+        
+    )
+</body>
+</html>

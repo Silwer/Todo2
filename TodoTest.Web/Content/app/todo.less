@@ -1,0 +1,41 @@
+﻿#PageWrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+#TodoWrapper {
+    margin: 100px 0 0 0;
+
+    header {
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    form{
+        input#Todo{
+            max-width: 200px;
+        }
+    }
+
+    #Todos {
+        margin: 20px 0 0 0;
+
+        header {
+            margin:0 0 10px 0;
+        }
+
+        table tr td.todo {
+            label.name {
+                font-size: 16px;
+                font-weight: normal;
+
+                &.completed {
+                    text-decoration: line-through;
+                }
+            }
+        }
+    }
+}
